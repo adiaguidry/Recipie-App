@@ -35,7 +35,7 @@ const addMeal = {
     this.name.value = this.ingredients.value = "";
     this.haveEverything.value = "Choose...";
 
-    menu.init();
+    menu.render();
     // bulkAddMeal(db.menu, this.getMeal())
   },
   cacheDom: function() {
@@ -49,31 +49,12 @@ const addMeal = {
 addMeal.init();
 
 const menu = {
-  weeklyMeals: [
-    {
-      id: 1,
-      name: "waffles",
-      ingredients: ["flour", "sugar", "syrup", "butter"]
-    },
-    {
-      id: 2,
-      name: "soup",
-      ingredients: ["flour", "sugar"]
-    },
-    {
-      id: 3,
-      name: "chicken yum yum",
-      ingredients: ["flour", "sugar", "syrup", "butter"],
-      haveEverything: "true"
-    }
-  ],
+  weeklyMeals: addMeal.weeklyMeals,
   render: function() {
-    console.log(this.weeklyMeals);
-    //this.tb.innerHTML = ''
-    let num = 0;
+      this.cacheDom();
+      this.tb.innerHTML = ''
     this.weeklyMeals.forEach(meal => {
-      num++;
-      console.log(num, meal);
+      this.cacheDom();
       this.buildTable(meal);
     });
   },
@@ -85,10 +66,7 @@ const menu = {
     this.td1.innerHTML = meal.name;
     this.td2.innerHTML = meal.ingredients.length;
 
-    this.iTagReady.setAttribute(
-      "class",
-      "far fa-check-circle " + this.ready(meal.haveEverything)
-    );
+    this.iTagReady.setAttribute("class","far fa-check-circle " + this.ready(meal.haveEverything) );
     this.iTagEdit.setAttribute("class", "far fa-edit btnedit");
     this.iTagDelete.setAttribute("class", "far fa-trash-alt btnno");
 
@@ -182,10 +160,10 @@ const item = {
     menu.render();
   },
   removeMeal(meal) {
-    // const i = this.weeklyMeals.findIndex(weeklymeal => weeklymeal.id === meal.id)
-    // this.weeklyMeals.splice(i, 1)
+    const i = this.weeklyMeals.findIndex(weeklymeal => weeklymeal.id === meal.id)
+    this.weeklyMeals.splice(i, 1)
     console.log("are we here", meal);
-    // menu.render()
+    menu.render()
   },
   bindEvents: function() {
     this.editSubmit.onclick = e => {
