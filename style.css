@@ -1,0 +1,25 @@
+.btngo {
+	color: lightgreen;
+	cursor: pointer;
+	font-size: 1.5em;
+}
+
+.btnno {
+	color: tomato;
+	cursor: pointer;
+	font-size: 1.5em;
+}
+
+.btnedit {
+	color: teal;
+	cursor: pointer;
+	font-size: 1.5em;
+}
+
+#table tr:hover { 
+   background: #d9d7d7; 
+}
+
+.badge:hover { 
+   background: tomato; 
+}

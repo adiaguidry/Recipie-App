@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymos">
+    <script src="https://kit.fontawesome.com/63a27bd54e.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1 class="bg-light py-4"><i class="fas fa-utensils text-info"></i> Weekly Dinner Menu</h1>
+        </div>
+        <div class="row ">
+            <div class="col-4">
+                <h4>Add a New Meal</h4>
+                <form id="add-meal">
+                    <div class="form-group">
+                        <label for="meal">Meal Name</label>
+                        <input type="text" class="form-control name" id="name" aria-describedby="mealName"
+                            placeholder="Enter recipie">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="Ingredients">Ingredients</label>
+                        <input type="text" class="form-control ingredients" id="ingredients"
+                            placeholder="Enter ingredients">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Have Everything?</label>
+                        </div>
+                        <select class="custom-select have-everything" id="have-everything">
+                            <option selected>Choose...</option>
+                            <option value=true>Yes</option>
+                            <option value=false>No</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary mr-1 " id="btn-add-meal">Submit</button>
+                    </div>
+
+                </form>
+                <div class="text-center">
+                    <h2 class="bg-light mt-4 py-4">Shopping List</h2>
+                </div>
+                <div class="">
+                    <ol>
+                        <li>Almond Milk</li>
+                        <li>Chicken Thighs</li>
+                        <li>Cucumbers</li>
+                        <li>gums</li>
+                    </ol>
+                </div>
+
+            </div>
+
+            <div class="col-8">
+                <table class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Meal</th>
+                            <th scope="col">Ingredients</th>
+                            <th scope="col">Ready</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+
+
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div id="exampleModalLabel" class="modal-header">
+                            <h5 class="modal-title" id="form-title">Edit Recipie</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="add-meal">
+                                <div class="form-group">
+                                    <label for="meal">Recipie Name</label>
+                                    <input type="text" class="form-control name" id="edit-name"
+                                        aria-describedby="mealName" placeholder="Enter recipie">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="Ingredients">Ingredients
+                                        <div id="ingredient-badge">
+
+                                        </div>
+                                    </label>
+                                    <input type="text" class="form-control ingredients" id="edit-ingredients"
+                                        placeholder="Edit ingredients">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Have
+                                            Everything?</label>
+                                    </div>
+                                    <select class="custom-select have-everything" id="edit-have-everything">
+                                        <option selected>Choose...</option>
+                                        <option value=true>Yes</option>
+                                        <option value=false>No</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary mr-1 " id="edit-meal"
+                                data-dismiss="modal">Submit</button>
+                            <button type="submit" class="btn btn-danger" data-dismiss="modal"
+                                id="btn-cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+        <!--dexie api -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/2.0.4/dexie.min.js"
+            integrity="sha256-ubffRsoh9QK5xJC/u3s3drtGFBZUHBm9bHFRzYvtkJI=" crossorigin="anonymous"></script>
+        <script src='./js/uuidv4.js'></script>
+        <script src="./js/main.js"></script>
+</body>
+
+</html>
