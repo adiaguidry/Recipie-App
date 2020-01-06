@@ -48,11 +48,43 @@ const addMeal = {
 
 addMeal.init();
 
+
+const shoppingList = {
+  list: '',
+  render: function() {
+    this.cacheDom();
+    this.ol.innerHTML =''
+    this.list.forEach(item => {
+      this.cacheDom();
+      this.buildList(item);
+    });
+  },
+  mapItems: function() {
+    this.list = addMeal.weeklyMeals.filter(item => item.haveEverything === 'false')
+    .flatMap(item => item.ingredients)
+    console.log(this.list, addMeal.weeklyMeals)
+    this.render();
+  },
+  buildList: function(item) {
+    this.li.innerHTML = item;
+    this.ol.appendChild(this.li);
+  },
+  cacheDom: function() {
+    this.ol = document.getElementById("shopping-list");
+    this.li = document.createElement("li");
+  },
+  init: function() {
+    this.cacheDom();
+    this.mapItems();
+  }
+};
+
 const menu = {
   weeklyMeals: addMeal.weeklyMeals,
   render: function() {
       this.cacheDom();
       this.tb.innerHTML = ''
+      shoppingList.init();
     this.weeklyMeals.forEach(meal => {
       this.cacheDom();
       this.buildTable(meal);
@@ -62,7 +94,7 @@ const menu = {
     this.editBtn.setAttribute("data-toggle", "modal");
     this.editBtn.setAttribute("data-target", "#exampleModal");
     this.th.setAttribute("scope", "row");
-    this.th.innerHTML = meal.id;
+    this.th.innerHTML = " ";
     this.td1.innerHTML = meal.name;
     this.td2.innerHTML = meal.ingredients.length;
 
@@ -173,3 +205,51 @@ const item = {
   }
 };
 item.init();
+
+const mealIdeas = {
+  init() {
+    this.cacheDom();
+    this.getMeals();
+  },
+  meals: [],
+  getMeals() {
+    fetch("https://recipe-puppy.p.rapidapi.com/", {
+  "method": "GET",
+  "headers": {
+    "x-rapidapi-host": "recipe-puppy.p.rapidapi.com",
+    "x-rapidapi-key": "2d63133bdcmsh685abfe378af147p1cd61djsn4c12fd46890f"
+  }
+})
+.then(response => {
+  return response.json();
+}).then(data => {
+  this.meals = data.results
+  this.render()
+}).catch(err => {
+  console.log(err);
+});
+
+  },
+   cacheDom: function() {
+    this.div = document.getElementById("mealIdeas");
+    this.ul = document.createElement("ul");
+    this.li = document.createElement("li");
+
+  },
+  render: function() {
+    this.meals.forEach(meal => {
+      this.cacheDom();
+      this.buildTable(meal);
+    });
+  },
+  buildTable: function(meal) {
+    this.li.innerHTML = meal.title;
+    this.ul.appendChild(this.li);
+    this.div.appendChild(this.ul)
+  }
+
+}
+
+mealIdeas.init()
+
+
