@@ -252,4 +252,42 @@ const mealIdeas = {
 
 mealIdeas.init()
 
+const obby = {
+  name: "adia",
+  age: 35,
+  kids: true
+}
+
+
+function isString(ob) {
+
+  for(let key in ob){
+    if(typeof(ob[key]) === 'string'){
+    console.log( ob[key])
+  }
+
+}
+}
+
+isString(obby)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
