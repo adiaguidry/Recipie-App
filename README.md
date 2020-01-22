@@ -1,5 +1,5 @@
 
-![](mages/menumaker.png)
+![](images/menumaker.png)
 # Recipie-App
 
 
