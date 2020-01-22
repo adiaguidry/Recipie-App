@@ -8,4 +8,4 @@ This weekly menu maker was built with Javascript OOP and includes an HTTP reques
 
 This app tracks your meal ideas for the week, along with whether you have all ingredients on hand. If you do not have all ingredients on hand a shopping list is created if ingredients are not on hand.
 
-Currently live on Heroku: [Dashboard-live](http://menu.adiaguidry.com/)
+Currently live on Heroku: [live](http://menu.adiaguidry.com/)
